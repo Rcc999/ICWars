@@ -1,0 +1,43 @@
+Voici le document de Conception pour notre mini-projet 2.
+Nous allons au travers de ce fichier vous décrire comment nous avons conçu notre programme et comment celui-ci s’organise.
+
+En premier lieu, nous n’avons pas apporté de changement à l’architecture de projet. Nous l’avons laissé tel quel et nous avons suivi les instructions pour l’organisation du projet.
+
+En ce qui concerne les classes/interfaces que nous avons ajoutés lors de la réalisation de notre projet voici une liste de ceux-ci :
+
+Dans icwars.actor.player :
+Nous avons créé les 3 classes : AIPlayer, ICWarsPlayer et Realplayer qui représentent le joueur qui contrôle ses unités. ICWarsPlayer définit le joueur par le curseur. Ses deux sous-classes sont invoquées pour permettre au joueur de contrôler le jeu (Realplayer) et pour laisser une intelligence artificielle basique contrôler les actions des unités ennemies.
+
+Dans icwars.actor.Unit:
+Nous avons créé un sous-paquetage Action contenant une classe abstract Action et les actions possibles par les unités : Attaquer ou Attendre, qui redéfinissent plusieurs méthode indispensable pour attaquer et wait selon le RealPlayer et le AI
+
+Il y a la classe abstract Unit, qui définit ce qu’est une unité en général.
+
+Ensuite nous avons les sous-classes héritant de Unit : Tank et Soldat définissant ces deux types d’unités plus spécifiquement et leur donnant leurs caractéristiques spécifiques.
+
+Il y a également la classe ICWarsActor définissant tous les acteurs agissant sur l’aire de jeu, permettant entre autres de définir le camp allié ou ennemi.
+
+Dans icwars.area :
+Les classes Level0 et Level1 ont été créées pour pouvoir définir les niveaux 0 et 1 respectivement. Pour cela nous avons des aires différentes en fonction du niveau et nous devons faire apparaître les unités à des positions différentes sur l’aire de jeu pour que cela soit adapté au niveau.
+
+ICWarsArea a été créée pour pouvoir mieux définir l’aire de jeu actuelle et les actions commises sur celle-ci.
+
+ICWarsBehavior est utilisée pour décrire et définir le comportement de nos unités sur notre aire de jeu, par exemple certaines cases nous donnent des bonus de défense lorsque notre unité se situe dessus.
+
+
+
+
+
+Dans icwars.gui :
+ICWarsPlayerGUI est créé pour donner des informations graphiques au joueur : ici par exemple le rayon de déplacement possible d’une unité.
+
+ICWarsActionPanel a pour rôle de faire apparaître une petite interface en haut à droite de l'écran pour nous donner le choix des actions à effectuer. Nous pouvons au travers de celui-ci savoir ce que nous pouvons faire.
+
+ICWarsInfoPanel nous donne des informations sur l’aire de jeu. Que ce soit le type de terrain ou encore les améliorations défensives qu’il nous procure, toutes ces informations sont regroupées en bas à gauche du jeu, pour que même les personnes qui ne le connaissent très peu puissent comprendre les effets des différentes cases.
+
+Enfin dans icwars.handler :
+L’interface ICWarsInteractionVisitor permet de définir et de gérer toutes les interactions qui ont lieu dans le jeu. Que ce soit l’action du terrain sur le joueur, les dégâts qu’une unité inflige à une autre, ou encore les interactions que le joueur fait effectuer aux cours du déroulement de la partie.
+
+La classe ICWars est la classe que nous pourrons définir de classe principale, qui invoque les méthodes et regroupe tout le jeu et appelant les méthodes nécessaires au fonctionnement correct de celui-ci. Il initialise l’aire de jeu, nous permet de changer de niveau et de reset.
+Nous avons dans cette classe organisée notre jeu avec les méthodes suivantes :
+
